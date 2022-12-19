@@ -2,14 +2,29 @@
 const $changeText = document.getElementsByClassName("disp")[0];
 $changeText.innerText = "변경되었습니다!!";
 
-// 2번 해결 중...
+// 2번 구현은 하였으나 수정 요망
 const $colorTab = document.querySelectorAll(".tab");
-for (let item of $colorTab) {
-  console.log(item);
-  item.addEventListener("click", () => {
-    item.style.backgroundColor = "#f00";
-    item.style.color = "#fff";
-  });
+const $showTab = document.querySelectorAll(".block");
+
+function change_color() {
+  this.style.backgroundColor = "#f00";
+  this.style.color = "#fff";
+  for (let show of $showTab) {
+    if (show.innerText !== `${this.innerText} 컨텐츠`) show.style.opacity = "0";
+  }
+}
+
+function reset_color() {
+  this.style.backgroundColor = "#fff";
+  this.style.color = "#000";
+  for (let show of $showTab) {
+    show.style.opacity = "1";
+  }
+}
+
+for (let color of $colorTab) {
+  color.addEventListener("click", change_color);
+  color.addEventListener("mouseleave", reset_color);
 }
 
 // 4번 숫자 입력되면 alert 뜨는 기능만 구현함...
