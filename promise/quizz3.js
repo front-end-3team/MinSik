@@ -42,3 +42,10 @@ const promise3 = () =>
 promise1().then((res) => {
   promise2().then(() => promise3());
 });
+
+const change = async () => {
+  const newPromise1 = await promise1();
+  console.log(newPromise1);
+};
+
+change();
