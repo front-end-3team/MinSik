@@ -24,3 +24,24 @@ max size
 심화. pomise의 then catch가 아닌 async await을 사용할 것
 
 */
+
+// 기초
+const slide1 = new Promise(function (resolve, reject) {
+  console.log("min size");
+  setTimeout(() => resolve("... 0.7초 후"), 700);
+});
+
+slide1 //
+  .then((result) => console.log(result))
+  .then(() => console.log("max size"))
+  .then(() => console.log("이번주 목표는 15% 남았습니다"));
+
+// 심화
+async function slide2() {
+  console.log("min size");
+  await new Promise((resolve, reject) => setTimeout(resolve, 700));
+  console.log("... 0.7초 후");
+  console.log("max size");
+  console.log("이번주 목표는 15% 남았습니다");
+}
+slide2();
