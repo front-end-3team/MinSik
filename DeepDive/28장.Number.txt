@@ -1,0 +1,58 @@
+28.1 Number 생성자 함수
+
+    new 연산자와 함께 호출하여 Number 인스턴스를 생성할 수 있다
+    => [[NumberData]] 내부 슬롯에 0을 할당한 Number 래퍼 객체를 생성한다
+    => new 연산자 없이 호출하면 타입을 변환한다
+
+28.2 Number 프로퍼티
+
+    (1) Number.EPSILON
+        부동소수점으로 인해 발생하는 오차를 해결하기 위해 사용한다
+
+    (2) Number.MAX_VALUE
+        가장 큰 양수 값을 나타낸다
+    
+    (3) Number.MIN_VALUE
+        가장 작은 양수 값을 나타낸다
+    
+    (4) Number.MAX_SAFE_INTEGER
+        안전하게 표현할 수 있는 가장 큰 정수값
+
+    (5) Number.MIN_SAFE_INTEGER
+        안전하게 표현할 수 있는 가장 작은 정수값
+
+    (6) Number.POSITIVE_INFINITY
+        양의 무한대를 나타낸다
+
+    (7) Number.NEGATIVE_INFINITY
+        음의 무한대를 나타낸다
+
+    (8) Number.NaN
+        NaN을 나타낸다
+
+28.3 Number 메서드
+
+    (1) Number.isFinite
+        인수로 전달된 값이 Infinity면 false를 정수라면 true를 반환한다
+        => 빌트인 전역 함수 isFinite와는 달리 전달받은 인수를 암묵적 타입 변환하지 않는다
+
+    (2) Number.isIntger
+        인수로 전달된 값이 정수인지 검사하여 불리언 값을 반환한다
+
+    (3) Number.isNaN
+        인수로 전달된 값이 NaN인지 검사하여 불리언 값을 반환한다
+
+    (4) Number.isSafeInteger
+        인수로 전달된 값이 안전한 정수인지 검사하여 불리언 값을 반환한다
+
+    (5) Number.prototype.toExponential
+        지수 표기법으로 변환하여 문자열로 반환한다
+    
+    (6) Number.prototype.toFixed
+        숫자를 반올림하여 문자열로 반환한다
+
+    (7) Number.prototype.toPrecision
+        인수로 전달받은 전체 자릿수까지 유효하도록 나머지 자릿수를 반올림하여 문자열로 반환한다
+
+    (8) Number.prototype.toString
+        숫자를 문자열로 변환하여 반환한다
