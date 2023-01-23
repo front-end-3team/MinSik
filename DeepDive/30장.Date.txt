@@ -1,0 +1,95 @@
+30.1 Date 생성자 함수
+
+    (1) new Date()
+        날짜와 시간 정보를 출력한다
+        => new 연산자 없이 호출하면 날짜와 시간을 문자열로 반환한다
+
+    (2) new Date(milliseconds)
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 인수로 전달된 밀리초만큼 경과한 날짜와 시간을 출력한다
+
+    (3) new Date(dateString)
+        지정된 날짜와 시간을 출력한다
+    
+    (4) new Date(year, month[day, hour, minute, second, millisecond])
+        연, 월, 일, 시, 분, 초, 밀리초를 의미하는 숫자를 인수로 받고 지정된 날짜와 시간을 출력한다
+        => 반드시 연, 월은 지정해야 하고 나머지는 옵션으로 default값은 0 또는 1이다
+
+30.2 Date 메서드
+
+    (1) Date.now
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 현재 시간까지 경과하는 밀리초를 숫자로 반환한다
+        
+    (2) Date.parse
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 인수로 전달된 지정 시간까지의 밀리초를 숫자로 반환한다
+
+    (3) Date.UTC
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 인수로 전달된 지정 시간까지의 밀리초를 숫자로 반환한다
+    
+    (4) Date.prototype.getFullYear
+        Date 객체의 연도를 나타내는 정수를 반환한다
+
+    (5) Date.prototype.setFullYear
+        Date 객체에 연도를 나타내는 정수를 설정한다
+
+    (6) Date.prototype.getMonth
+        Date 객체의 월을 나타내는 0 ~ 11의 정수를 반환한다
+
+    (7) Date.prototype.setMonth
+        Date 객체에 월을 나타내는 0 ~ 11의 정수를 설정한다
+
+    (8) Date.prototype.getDate
+        Date 객체의 날짜(1~31)를 나타내는 정수를 반환한다
+
+    (9) Date.prototype.setDate
+        Date 객체에 날짜(1~31)를 나타내는 정수를 설정한다
+
+    (10) Date.prototype.getDay
+        Date 객체의 요일(0~6)을 나타내는 정수를 반환한다
+    
+    (11) Date.prototype.getHours
+        Date 객체의 시간(0~23)을 나타내는 정수를 반환한다
+
+    (12) Date.prototype.setHours
+        Date 객체의 시간(0~23)을 나타내는 정수를 설정한다
+
+    (13) Date.prototype.getMinutes
+        Date 객체의 분(0~59)을 나타내는 정수를 반환한다
+
+    (14) Date.prototype.setMinutes
+        Date 객체의 분(0~59)을 나타내는 정수를 설정한다
+    
+    (15) Date.prototype.getSeconds
+        Date 객체의 초(0~59)를 나타내는 정수를 반환한다
+
+    (16) Date.prototype.setSeconds
+        Date 객체의 초(0~59)를 나타내는 정수를 설정한다
+
+    (17) Date.prototype.getMilliseconds
+        Date 객체의 밀리초(0~999)를 나타내는 정수를 반환한다
+
+    (18) Date.prototype.setMilliseconds
+        Date 객체의 밀리초(0~999)를 나타내는 정수를 설정한다
+
+    (19) Date.prototype.getTime
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 Date 객체의 시간까지 경과된 밀리초를 반환한다
+
+    (20) Date.prototype.setTime
+        1970년 1월 1일 00:00:00(UTC)을 기점으로 Date 객체의 시간까지 경과된 밀리초를 설정한다
+
+    (21) Date.prototype.getTimezoneOffset
+        UTC와 Date 객체에 지정되 locale 시간과의 차이를 분 단위로 반환한다
+
+    (22) Date.prototype.toDateString
+        Date 객체의 날짜를 문자열로 반환한다
+    
+    (23) Date.prototype.toTimeString
+        Date 객체의 날짜를 문자열로 반환한다
+
+    (24) Date.prototype.toISOString
+        ISO 8601 형식으로 Date 객체의 날짜와 시간을 표현한 문자열을 반환한다
+
+    (25) Date.prototype.toLocaleString
+        인수로 전달된 locale을 기준으로 Date 객체의 날짜와 시간을 표현한 문자열을 반환한다
+
+    (26) Date.prototype.toLocaleTimeString
+        인수로 전달된 locale을 기준으로 Date 객체의 날짜와 시간을 표현한 문자열을 반환한다
