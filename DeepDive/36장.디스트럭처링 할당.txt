@@ -1,0 +1,27 @@
+36.1 배열 디스트럭처링 할당
+
+    구조 분해 할당의 대상은 이터러블이어야 하며, 할당 기준은 인덱스다
+    => 할당받을 변수는 배열 리터럴 형태로 선언한다
+
+    ex) const arr = [1, 2, 3];
+        const [one, two, three] = arr;
+        console.log(one, two, three); // 1, 2, 3
+
+    변수의 개수와 이터러블의 요소 개수가 반드시 일치할 필요는 없다
+
+36.2 객체 디스트럭처링 할당
+
+    할당의 대상은 객체이어야 하며, 할당 기준은 프로퍼티 키이므로 배열과 달리 순서가 의미가 없다
+    => 동작 원리는 배열과 동일하다
+
+    객체 디스트럭처링 할당을 사용하면 가독성이 좋아진다
+
+    ex) function printTodo(todo) {
+        console.log(`할일 ${todo.content}은 ${todo.completed ? '완료' : '실패'} 상태입니다.`);
+        }
+
+        function printTodo({ content, completed }) {
+        console.log(`할일 ${content}은 ${completed ? '완료' : '실패'} 상태입니다.`);
+        }
+
+        printTodo({ id: 1, content: 'HTML', completed: true });
