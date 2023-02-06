@@ -1,10 +1,9 @@
-import "./App.css";
-import Homepage from "./Homepage";
+import UseState from "hooks/UseState";
 
 function App() {
   return (
     <>
-      <Homepage />
+      <UseState />
     </>
   );
 }
