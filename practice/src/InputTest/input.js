@@ -1,10 +1,17 @@
-function Input({ text, changeText, clearText }) {
+function Input({ id, password, changeText, clearText }) {
   return (
     <>
-      <input onChange={changeText} value={text} />
+      <input name="id" placeholder="id" onChange={changeText} value={id} />
+      <input
+        name="password"
+        placeholder="password"
+        onChange={changeText}
+        value={password}
+      />
       <button onClick={clearText}>초기화</button>
       <div>
-        <p>Input의 값: {text}</p>
+        <p>Id: {id}</p>
+        <p>PassWord: {password}</p>
       </div>
     </>
   );

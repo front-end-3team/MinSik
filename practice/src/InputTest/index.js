@@ -2,19 +2,36 @@ import { useState } from "react";
 import Input from "./input";
 
 function InputTest() {
-  const [text, setText] = useState("");
+  const [inputs, setInputs] = useState({
+    id: "",
+    password: "",
+  });
+
+  const { id, password } = inputs;
 
   const changeText = (e) => {
-    setText(e.target.value);
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   };
 
   const clearText = () => {
-    setText("");
+    setInputs({
+      id: "",
+      password: "",
+    });
   };
 
   return (
     <>
-      <Input text={text} changeText={changeText} clearText={clearText} />
+      <Input
+        id={id}
+        password={password}
+        changeText={changeText}
+        clearText={clearText}
+      />
     </>
   );
 }
