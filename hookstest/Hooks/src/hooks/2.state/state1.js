@@ -18,12 +18,12 @@ function State1() {
     <>
       <h1>문제1</h1>
       <ul>
-        {/* list */}
-        {/* 예시 데이터입니다 */}
-        <li>
-          <h3>Summer</h3>
-          <p>Joe Hisaishi</p>
-        </li>
+        {PlayListMock.playlist.map((v) => (
+          <li>
+            <h3>{v.title}</h3>
+            <p>{v.signer}</p>
+          </li>
+        ))}
       </ul>
       <div>
         <p>
@@ -34,6 +34,9 @@ function State1() {
         </p>
         <p>
           <button>추가</button>
+        </p>
+        <p>
+          <button>삭제</button>
         </p>
       </div>
     </>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Q3components from "../../components/1.basic/q3components";
 
 function Q3() {
@@ -22,17 +23,28 @@ function Q3() {
     또한, 줄넘기 횟수는 0으로 고정되어야합니다.
   */
 
+  const [rope, setRope] = useState(false);
+  const [count, setCount] = useState(0);
+
+  const onStartRope = () => {
+    setRope(true);
+  };
+
+  const onQuitRope = () => {
+    setRope(false);
+  };
+
   return (
     <>
       <h1>문제3</h1>
       <div>
-        <p> 줄넘기 횟수 : 0 </p>
-        <Q3components />
+        <p> 줄넘기 횟수 : {count} </p>
+        {rope && <Q3components setCount={setCount} />}
         <p>
-          <button>줄넘기 시작</button>
+          <button onClick={onStartRope}>줄넘기 시작</button>
         </p>
         <p>
-          <button>줄넘기 중지</button>
+          <button onClick={onQuitRope}>줄넘기 중지</button>
         </p>
       </div>
     </>
