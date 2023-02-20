@@ -63,6 +63,49 @@ function State2() {
     ],
   });
 
+  const [inputs, setInputs] = useState({
+    nickname: "",
+    content: "",
+  });
+
+  const { nickname, content } = inputs;
+
+  const onInputText = (event) => {
+    const { name, value } = event.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const onAddComment = () => {
+    setPost((prev) => ({
+      ...prev,
+      Comments: [
+        ...prev.Comments,
+        {
+          User: {
+            nickname,
+          },
+          content,
+          myComment: true,
+        },
+      ],
+    }));
+
+    setInputs({
+      nickname: "",
+      content: "",
+    });
+  };
+
+  const onRemoveComment = () => {
+    setPost((prev) => ({
+      ...prev,
+      Comments: prev.Comments.filter((comment) => comment.myComment !== true),
+    }));
+  };
+
   return (
     <S.Wrapper>
       <h1>문제2</h1>
@@ -85,14 +128,28 @@ function State2() {
         <p>
           댓글 수: <span>{post.Comments.length}</span>
         </p>
-        <input placeholder="작성자" />
-        <input placeholder="댓글 내용" />
-        <button>댓글 작성</button>
+        <input
+          placeholder="작성자"
+          name="nickname"
+          onChange={onInputText}
+          value={nickname}
+        />
+        <input
+          placeholder="댓글 내용"
+          name="content"
+          onChange={onInputText}
+          value={content}
+        />
+        <button onClick={onAddComment}>댓글 작성</button>
       </div>
       <S.CommentList>
         {/* list */}
         {/* 예시 데이터 */}
-        <Comment />
+        <Comment
+          Comments={post.Comments}
+          onRemoveComment={onRemoveComment}
+          onEditComment={onEditComment}
+        />
       </S.CommentList>
     </S.Wrapper>
   );

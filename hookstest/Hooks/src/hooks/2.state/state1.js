@@ -26,19 +26,20 @@ function State1() {
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
+
     setInputs({
       ...inputs,
       [name]: value,
     });
   };
 
-  const onAddMusic = () => {
-    const list = {
+  const onAddList = () => {
+    const newList = {
       title,
       signer,
     };
 
-    setLists([...lists, list]);
+    setLists([...lists, newList]);
 
     setInputs({
       title: "",
@@ -46,8 +47,8 @@ function State1() {
     });
   };
 
-  const onRemoveMusic = (title) => {
-    setLists(lists.filter((list) => list.title !== title));
+  const removeBtn = (title) => {
+    setLists(lists.filter((v) => v.title !== title));
   };
 
   return (
@@ -58,13 +59,7 @@ function State1() {
           <li>
             <h3>{v.title}</h3>
             <p>{v.signer}</p>
-            <button
-              onClick={() => {
-                onRemoveMusic(v.title);
-              }}
-            >
-              삭제
-            </button>
+            <button onClick={() => removeBtn(v.title)}>삭제</button>
             <hr></hr>
           </li>
         ))}
@@ -74,11 +69,11 @@ function State1() {
           곡명 : <input name="title" value={title} onChange={onInputChange} />
         </p>
         <p>
-          가수/작곡 :
+          가수/작곡 :{" "}
           <input name="signer" value={signer} onChange={onInputChange} />
         </p>
         <p>
-          <button onClick={onAddMusic}>추가</button>
+          <button onClick={onAddList}>추가</button>
         </p>
       </div>
     </>

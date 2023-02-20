@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
-function Comment() {
-  return (
+function Comment({ Comments, onRemoveComment, onEditComment }) {
+  return Comments.map((comment) => (
     <S.CommentItem>
       <p>
-        작성자: <span>예시 이름</span>
+        작성자: <span>{comment.User.nickname}</span>
       </p>
       <p>
-        댓글 내용: <span>예시 내용</span>
+        댓글 내용: <span>{comment.content}</span>
       </p>
+      <button onClick={() => onEditComment(comment.myComment)}>수정</button>
+      <button onClick={onRemoveComment}>삭제</button>
     </S.CommentItem>
-  );
+  ));
 }
 export default Comment;
 
