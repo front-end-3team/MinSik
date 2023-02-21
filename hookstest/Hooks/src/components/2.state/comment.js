@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function Comment({ Comments, onRemoveComment, onEditComment }) {
+function Comment({ Comments, onRemoveComment }) {
   return Comments.map((comment) => (
     <S.CommentItem>
       <p>
@@ -9,8 +9,14 @@ function Comment({ Comments, onRemoveComment, onEditComment }) {
       <p>
         댓글 내용: <span>{comment.content}</span>
       </p>
-      <button onClick={() => onEditComment(comment.myComment)}>수정</button>
-      <button onClick={onRemoveComment}>삭제</button>
+      <button>수정</button>
+      <button
+        onClick={() =>
+          onRemoveComment(comment.User.nickname, comment.myComment)
+        }
+      >
+        삭제
+      </button>
     </S.CommentItem>
   ));
 }

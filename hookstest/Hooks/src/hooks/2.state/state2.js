@@ -99,11 +99,14 @@ function State2() {
     });
   };
 
-  const onRemoveComment = () => {
-    setPost((prev) => ({
-      ...prev,
-      Comments: prev.Comments.filter((comment) => comment.myComment !== true),
-    }));
+  const onRemoveComment = (nickname, myComment) => {
+    myComment &&
+      setPost((prev) => ({
+        ...prev,
+        Comments: prev.Comments.filter(
+          (comment) => comment.User.nickname !== nickname
+        ),
+      }));
   };
 
   return (
@@ -145,11 +148,7 @@ function State2() {
       <S.CommentList>
         {/* list */}
         {/* 예시 데이터 */}
-        <Comment
-          Comments={post.Comments}
-          onRemoveComment={onRemoveComment}
-          onEditComment={onEditComment}
-        />
+        <Comment Comments={post.Comments} onRemoveComment={onRemoveComment} />
       </S.CommentList>
     </S.Wrapper>
   );
