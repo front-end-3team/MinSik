@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import Comment from "../../components/2.state/comment";
 
@@ -16,6 +16,7 @@ function State2() {
             3. 댓글 삭제 기능 ( 본인이 작성한 댓글만 삭제할 수 있습니다, myComment 활용 )
     */
 
+  // Comments 배열 인덱싱을 위해 id값 추가
   const [post, setPost] = useState({
     title: "안녕하세요 여러분 김성용 강사입니다 :)",
     content: "오늘도 모두 화이팅입니다!",
@@ -26,56 +27,66 @@ function State2() {
     },
     Comments: [
       {
+        id: 1,
         User: {
           nickname: "김사과",
         },
         content: "오늘도 화이팅입니다!",
         myComment: false,
+        isEdit: false,
       },
       {
+        id: 2,
         User: {
           nickname: "반하나",
         },
         content: "오늘도 화이팅입니다!",
         myComment: false,
+        isEdit: false,
       },
       {
+        id: 3,
         User: {
           nickname: "오렌지",
         },
         content: "오늘도 화이팅입니다!",
         myComment: false,
+        isEdit: false,
       },
       {
+        id: 4,
         User: {
           nickname: "이멜론",
         },
         content: "오늘도 화이팅입니다!",
         myComment: false,
+        isEdit: false,
       },
       {
+        id: 5,
         User: {
           nickname: "박수박",
         },
         content: "오늘도 화이팅입니다!",
         myComment: false,
+        isEdit: false,
       },
     ],
   });
 
-  const [inputs, setInputs] = useState({
-    nickname: "",
-    content: "",
-  });
+  // id값을 설정하기 위해 useRef 사용
+  const commentId = useRef(post.Comments.length);
 
-  const { nickname, content } = inputs;
+  // useState를 2개 사용하여 input값 감지
+  const [inputNickname, setInputNickname] = useState("");
+  const [inputContent, setInputContent] = useState("");
 
-  const onInputText = (event) => {
-    const { name, value } = event.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
+  const onChangeNickname = (event) => {
+    setInputNickname(event.target.value);
+  };
+
+  const onChangeContent = (event) => {
+    setInputContent(event.target.value);
   };
 
   const onAddComment = () => {
@@ -84,29 +95,60 @@ function State2() {
       Comments: [
         ...prev.Comments,
         {
+          id: commentId.current,
           User: {
-            nickname,
+            nickname: inputNickname,
           },
-          content,
+          content: inputContent,
           myComment: true,
+          isEdit: false,
         },
       ],
     }));
 
-    setInputs({
-      nickname: "",
-      content: "",
-    });
+    commentId.current += 1;
   };
 
-  const onRemoveComment = (nickname, myComment) => {
+  // id, myComment를 받아오고 myComment가 true일 때만 삭제
+  const onRemoveComment = (id, myComment) => {
     myComment &&
       setPost((prev) => ({
         ...prev,
-        Comments: prev.Comments.filter(
-          (comment) => comment.User.nickname !== nickname
-        ),
+        Comments: prev.Comments.filter((comment) => comment.id !== id),
       }));
+  };
+
+  // 수정하기 버튼
+  const onEditBtn = (id, myComment) => {
+    if (!myComment) return;
+    const newEditCheck = { ...post };
+    const newEditChange = newEditCheck.Comments.find(
+      (comment) => comment.id === id
+    );
+    newEditChange.isEdit = true;
+    setPost(newEditCheck);
+  };
+
+  // 수정완료 버튼
+  const onEditDoneBtn = (id, myComment) => {
+    if (!myComment) return;
+    const newEditCheck = { ...post };
+    const newEditChange = newEditCheck.Comments.find(
+      (comment) => comment.id === id
+    );
+    newEditChange.isEdit = false;
+    setPost(newEditCheck);
+  };
+
+  // id, myComment, edit(하위 컴포넌트에서의 input값)를 받아오고 myComment가 true일 때만 수정 가능
+  const onStartEdit = (id, myComment, edit) => {
+    if (!myComment) return;
+    const newEdit = { ...post };
+    const newEditComment = newEdit.Comments.find(
+      (comment) => comment.id === id
+    );
+    newEditComment.content = edit;
+    setPost(newEdit);
   };
 
   return (
@@ -131,24 +173,18 @@ function State2() {
         <p>
           댓글 수: <span>{post.Comments.length}</span>
         </p>
-        <input
-          placeholder="작성자"
-          name="nickname"
-          onChange={onInputText}
-          value={nickname}
-        />
-        <input
-          placeholder="댓글 내용"
-          name="content"
-          onChange={onInputText}
-          value={content}
-        />
+        <input placeholder="작성자" onChange={onChangeNickname} />
+        <input placeholder="댓글 내용" onChange={onChangeContent} />
         <button onClick={onAddComment}>댓글 작성</button>
       </div>
       <S.CommentList>
-        {/* list */}
-        {/* 예시 데이터 */}
-        <Comment Comments={post.Comments} onRemoveComment={onRemoveComment} />
+        <Comment
+          Comments={post.Comments}
+          onRemoveComment={onRemoveComment}
+          onStartEdit={onStartEdit}
+          onEditBtn={onEditBtn}
+          onEditDoneBtn={onEditDoneBtn}
+        />
       </S.CommentList>
     </S.Wrapper>
   );
