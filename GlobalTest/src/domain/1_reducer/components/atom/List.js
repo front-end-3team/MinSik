@@ -1,4 +1,4 @@
-const ReducerQ1List = ({ ingredients }) => {
+const ReducerQ1List = ({ ingredients, onRemove }) => {
   return (
     <tbody>
       {ingredients.map((ingredient) => (
@@ -6,7 +6,7 @@ const ReducerQ1List = ({ ingredients }) => {
           <td>{ingredient.name}</td>
           <td>{ingredient.price}</td>
           <td>
-            <button>삭제</button>
+            <button onClick={() => onRemove(ingredient.id)}>삭제</button>
           </td>
         </tr>
       ))}
