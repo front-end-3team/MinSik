@@ -14,7 +14,7 @@ export const ingredientsReducer = (state, action) => {
     case "REMOVE_INGREDIENT":
       return state.filter((ingredient) => ingredient.id !== action.payload.id);
     default:
-      state;
+      return state;
   }
 };
 
