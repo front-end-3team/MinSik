@@ -1,6 +1,8 @@
 import NavigateButton from "../../../../components/NavigateButton";
 import {
+  ADD_ISEDIT,
   ADD_USER,
+  RESET_USER,
   useUserContext,
   useUserDispatchContext,
 } from "../../../../store/3_context";
@@ -44,19 +46,34 @@ const ContextQ2Page = () => {
     });
   };
 
-  console.log(userList);
+  const onAddStatus = () => {
+    dispatch({
+      type: ADD_ISEDIT,
+    });
+  };
+
+  const onResetUser = () => {
+    dispatch({
+      type: RESET_USER,
+    });
+  };
+
+  const onSubmitList = () => {
+    userList.map((user) => user.isEdit === true);
+    console.log(userList);
+  };
 
   return (
     <>
       <h2>문제 2 - 2</h2>
-      <ContextQ2Form onAddUser={onAddUser} />
-      <ContextQ2Form3 />
+      <ContextQ2Form onAddUser={onAddUser} onAddStatus={onAddStatus} />
+      <ContextQ2Form3 onResetUser={onResetUser} />
       <div
         style={{
           marginTop: "32px",
         }}
       >
-        <button>SUBMIT</button>
+        <button onClick={onSubmitList}>SUBMIT</button>
       </div>
       <NavigateButton to={"/3_redux/q1"} />
     </>

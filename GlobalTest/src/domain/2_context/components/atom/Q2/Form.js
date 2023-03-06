@@ -1,6 +1,6 @@
 import ContextQ2Form2 from "./Form2";
 
-const ContextQ2Form = ({ onAddUser }) => {
+const ContextQ2Form = ({ onAddUser, onAddStatus }) => {
   const onAddUserList = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -21,7 +21,7 @@ const ContextQ2Form = ({ onAddUser }) => {
         </label>
         <button type="submit">추가</button>
       </form>
-      <ContextQ2Form2 />
+      <ContextQ2Form2 onAddStatus={onAddStatus} />
     </div>
   );
 };

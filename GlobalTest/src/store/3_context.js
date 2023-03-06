@@ -25,10 +25,7 @@ const userListReducer = (state, action) => {
         },
       ];
     case ADD_ISEDIT:
-      return state.map((user) => ({
-        ...user,
-        isEdit: true,
-      }));
+      return state.map((user) => ({ ...user, isEdit: true }));
     case RESET_USER:
       return initialState;
     default:
